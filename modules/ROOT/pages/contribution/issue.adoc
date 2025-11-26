@@ -1,0 +1,52 @@
+= Issue Guidelines
+
+== Issue type
+* *Epic*: Large feature or initiative spanning several weeks to months.
+* *Sub-issue*: Task that takes hours or longer and composes the Epic. Additional sub-levels are fine when they improve clarity.
+
+== Title naming rules
+* *Epic*: `Epic: {Title}`
+** Examples:
+*** `Epic: Payment v1`
+* *Sub-issue* (any level): `[Slug] {Title}`
+** Slug = short identifier of the parent Epic
+** Examples:
+*** `[Pay-v1] Create SetupIntent`
+*** `[Pay-v1] Android: Integrate PaymentSheet`
+*** `[Pay-v1] Retry billing_job on Stripe`
+
+== Description rules
+
+=== Epic Issue body must include
+* `## Goal` — What success looks like and the business/customer value.
+* `## Out of Scope` — Explicitly list what will *not* be done in this Epic.
+* `## Acceptance Criteria` — Verifiable conditions of completion, including how each will be validated (test case, manual check, metric, etc.).
+
+=== Sub-issue body should include
+* Context / summary of the task.
+* `## Action items` — Optional checklist of small tasks when helpful.
+
+== Label rules
+* *Epic*: add label `type/epic`.
+* *Sub-issue*: add label `type/task`
+* Add area labels as needed (e.g., `area/android`, `area/supabase`) to aid triage.
+
+== Creating Linked Sub-issues via GitHub CLI
+We use the https://github.com/yahsan2/gh-sub-issue[`gh-sub-issue`] GitHub CLI extension to create Sub-issues that are automatically linked to a parent Epic.
+
+.Install the extension (once)
+[,bash]
+----
+gh extension install yahsan2/gh-sub-issue
+----
+
+.Create a Sub-issue linked to a parent
+[,bash]
+----
+gh sub-issue create <parent-issue-number> \
+  --title "[Slug] {Title}" \
+  --body "Short description and checklist of action items"
+----
+
+Replace `<parent-issue-number>` with the Epic issue number.
+
